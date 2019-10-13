@@ -43,6 +43,27 @@ namespace HyperBloom
                 Plugin.config.SetInt(sectionName, "Texture Width", (int)value);
             };
             textureWidthOption.FormatValue += delegate (float value) { return $"{value}"; };
+
+            var subMenuBloomOnMiss = subMenu.AddSubMenu("Bloom On Miss", null, true);
+
+            var bloomOnMissEnabledOption = subMenuBloomOnMiss.AddBool("Enabled");
+            bloomOnMissEnabledOption.GetValue += delegate { return Plugin.bloomOnMissEnabled; };
+            bloomOnMissEnabledOption.SetValue += delegate (bool value)
+            {
+                Plugin.bloomOnMissEnabled = value;
+            };
+            bloomOnMissEnabledOption.EnabledText = "On";
+            bloomOnMissEnabledOption.DisabledText = "Off";
+
+            var bloomOnMissInitialValueOption = subMenuBloomOnMiss.AddList("Initial Bloom Intensity", new float[] { 0, 0.25f, 0.5f, 0.75f, 1, 10, 20, 30, 40, 50, 60, 69, 80, 90, 100, 125, 150, 175, 200, 300, 400, 500, 1000, float.MaxValue });
+            bloomOnMissInitialValueOption.GetValue += delegate { return Plugin.initialBloomIntensity; };
+            bloomOnMissInitialValueOption.SetValue += delegate (float value) { Plugin.initialBloomIntensity = value; };
+            bloomOnMissInitialValueOption.FormatValue += delegate (float value) { return $"{value}"; };
+
+            var bloomIncreaseStepOption = subMenuBloomOnMiss.AddList("Bloom Increase Step", new float[] { 0.1f, 0.25f, 0.5f, 0.75f, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
+            bloomIncreaseStepOption.GetValue += delegate { return Plugin.bloomStep; };
+            bloomIncreaseStepOption.SetValue += delegate (float value) { Plugin.bloomStep = value; };
+            bloomIncreaseStepOption.FormatValue += delegate (float value) { return $"{value}"; };
         }
     }
 }

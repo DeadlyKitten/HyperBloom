@@ -13,6 +13,7 @@ namespace HyperBloom
         static readonly string configName = "HyperBloom";
         static readonly string sectionName = "Settings";
 
+        // Basic Settings Options
         internal static bool postProcessEnabled = true;
         internal static float baseColorBoost = 0.5f;
         internal static float baseColorBoostThreshold = 0.1f;
@@ -20,6 +21,10 @@ namespace HyperBloom
         internal static float bloomIntensity = 1f;
         internal static int textureWidth = 512;
 
+        // Bloom On Miss Options
+        internal static bool bloomOnMissEnabled = false;
+        internal static float initialBloomIntensity = 1;
+        internal static float bloomStep = 1;
 
         public void Init(IPALogger logger)
         {
@@ -40,6 +45,13 @@ namespace HyperBloom
 
         public void OnActiveSceneChanged(Scene prevScene, Scene nextScene)
         {
+            if (nextScene.name == "GameCore" && bloomOnMissEnabled)
+            {
+                Bloominator3000.Init();
+                return;
+            }
+
+            Bloominator3000.Instance?.Cleanup();
             var preset = GeneratePreset();
             var mainEffect = Resources.FindObjectsOfTypeAll<MainEffect>().FirstOrDefault();
             mainEffect?.GetPrivateField<MainEffectParams>("_mainEffectParams")?.InitFromPreset(preset);
