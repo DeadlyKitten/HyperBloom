@@ -1,9 +1,9 @@
 ﻿{
   "$schema": "https://raw.githubusercontent.com/nike4613/ModSaber-MetadataFileSchema/master/Schema.json",
-  "author": "",
-  "description": "",
-  "gameVersion": "0.12.2",
-  "id": null,
+  "author": "Steven 🎀",
+  "description": "Supercharge your bloom!",
+  "gameVersion": "1.4.2",
+  "id": "HyperBloom",
   "name": "HyperBloom",
   "version": "0.0.1-alpha",
   "features": []

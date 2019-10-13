@@ -1,7 +1,0 @@
-﻿namespace HyperBloom
-{
-    internal class PluginConfig
-    {
-        public bool RegenerateConfig = true;
-    }
-}
