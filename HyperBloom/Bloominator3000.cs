@@ -42,7 +42,6 @@ namespace HyperBloom
         private void OnNoteMiss(NoteData data, int c)
         {
             Plugin.bloomIntensity += Plugin.bloomStep;
-            Logger.Log($"Bloom Intensity = {Plugin.bloomIntensity}");
             _mainEffectParams.SetPrivateField("_bloomIntensity", Plugin.bloomIntensity);
         }
 
