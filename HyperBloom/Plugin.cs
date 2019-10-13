@@ -27,7 +27,10 @@ namespace HyperBloom
             config = new BS_Utils.Utilities.Config(configName);
         }
 
-        public void OnApplicationStart() { }
+        public void OnApplicationStart()
+        {
+            LoadSettings();
+        }
 
         public void OnApplicationQuit() { }
 
