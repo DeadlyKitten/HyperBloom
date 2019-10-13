@@ -13,12 +13,12 @@ namespace HyperBloom
         static readonly string configName = "HyperBloom";
         static readonly string sectionName = "Settings";
 
-        private bool postProcessEnabled = true;
-        private float baseColorBoost = 0.5f;
-        private float baseColorBoostThreshold = 0.1f;
-        private int bloomIterations = 4;
-        private float bloomIntensity = 1f;
-        private int textureWidth = 512;
+        internal static bool postProcessEnabled = true;
+        internal static float baseColorBoost = 0.5f;
+        internal static float baseColorBoostThreshold = 0.1f;
+        internal static int bloomIterations = 4;
+        internal static float bloomIntensity = 1f;
+        internal static int textureWidth = 512;
 
 
         public void Init(IPALogger logger)
@@ -38,13 +38,21 @@ namespace HyperBloom
         public void OnActiveSceneChanged(Scene prevScene, Scene nextScene)
         {
             var preset = GeneratePreset();
-            var camera = Resources.FindObjectsOfTypeAll<MainEffect>().FirstOrDefault();
-            camera?.GetPrivateField<MainEffectParams>("_mainEffectParams")?.InitFromPreset(preset);
+            var mainEffect = Resources.FindObjectsOfTypeAll<MainEffect>().FirstOrDefault();
+            mainEffect?.GetPrivateField<MainEffectParams>("_mainEffectParams")?.InitFromPreset(preset);
         }
 
-        public void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode) { }
+        public void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
+        {
+            if (scene.name == "MenuCore")
+                SettingsMenu.CreateSettingsUI();
+        }
 
-        public void OnSceneUnloaded(Scene scene) { }
+        public void OnSceneUnloaded(Scene scene)
+        {
+            if (scene.name == "MenuCore")
+                SettingsMenu.initialized = false;
+        }
 
         private MainEffectGraphicsSettingsPresets.Preset GeneratePreset()
         {
