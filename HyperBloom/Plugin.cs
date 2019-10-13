@@ -86,7 +86,7 @@ namespace HyperBloom
             return preset;
         }
 
-        private void LoadSettings()
+        internal static void LoadSettings()
         {
             postProcessEnabled = config.GetBool(sectionName, "Post Process Enabled", true, true);
             baseColorBoost = config.GetFloat(sectionName, "Base Color Boost", 0.5f, true);

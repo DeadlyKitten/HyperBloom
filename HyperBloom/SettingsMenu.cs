@@ -13,6 +13,7 @@ namespace HyperBloom
             initialized = true;
 
             Logger.Log("Creating Settings UI", Logger.LogLevel.Notice);
+            Plugin.LoadSettings();
 
             string sectionName = "Settings";
             var subMenu = SettingsUI.CreateSubMenu("Hyper Bloom");
