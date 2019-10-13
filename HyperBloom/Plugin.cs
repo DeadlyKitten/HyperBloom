@@ -1,9 +1,9 @@
 ﻿using IPA;
+using IPA.Utilities;
+using System.Linq;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using IPALogger = IPA.Logging.Logger;
-using UnityEngine;
-using System.Linq;
-using IPA.Utilities;
 
 namespace HyperBloom
 {
@@ -32,10 +32,7 @@ namespace HyperBloom
             config = new BS_Utils.Utilities.Config(configName);
         }
 
-        public void OnApplicationStart()
-        {
-            LoadSettings();
-        }
+        public void OnApplicationStart() => LoadSettings();
 
         public void OnApplicationQuit() { }
 

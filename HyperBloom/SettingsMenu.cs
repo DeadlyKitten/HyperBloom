@@ -1,5 +1,4 @@
 ﻿using CustomUI.Settings;
-using UnityEngine;
 
 namespace HyperBloom
 {
@@ -15,7 +14,7 @@ namespace HyperBloom
             Logger.Log("Creating Settings UI", Logger.LogLevel.Notice);
             Plugin.LoadSettings();
 
-            string sectionName = "Settings";
+            var sectionName = "Settings";
             var subMenu = SettingsUI.CreateSubMenu("Hyper Bloom");
 
             var intensityOption = subMenu.AddList("Bloom Intensity", new float[] { 0, 0.25f, 0.5f, 0.75f, 1, 10, 20, 30, 40, 50, 60, 69, 80, 90, 100, 125, 150, 175, 200, 300, 400, 500, 1000, float.MaxValue });
@@ -31,7 +30,7 @@ namespace HyperBloom
             iterationsOption.GetValue += delegate { return Plugin.bloomIterations; };
             iterationsOption.SetValue += delegate (float value)
             {
-                Plugin.bloomIterations = (int) value;
+                Plugin.bloomIterations = (int)value;
                 Plugin.config.SetInt(sectionName, "Bloom Iterations", (int)value);
             };
             iterationsOption.FormatValue += delegate (float value) { return $"{value}"; };
@@ -40,7 +39,7 @@ namespace HyperBloom
             textureWidthOption.GetValue += delegate { return Plugin.textureWidth; };
             textureWidthOption.SetValue += delegate (float value)
             {
-                Plugin.textureWidth = (int) value;
+                Plugin.textureWidth = (int)value;
                 Plugin.config.SetInt(sectionName, "Texture Width", (int)value);
             };
             textureWidthOption.FormatValue += delegate (float value) { return $"{value}"; };

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using IPA.Utilities;
 using System.Collections;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
-using IPA.Utilities;
 
 namespace HyperBloom
 {
@@ -24,10 +20,7 @@ namespace HyperBloom
             Instance._mainEffectParams.SetPrivateField("_bloomIntensity", Plugin.bloomIntensity);
         }
 
-        internal void Cleanup()
-        {
-            _scoreController.noteWasMissedEvent -= OnNoteMiss;
-        }
+        internal void Cleanup() => _scoreController.noteWasMissedEvent -= OnNoteMiss;
 
         private void Awake()
         {
