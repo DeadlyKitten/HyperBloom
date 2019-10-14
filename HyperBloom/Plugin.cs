@@ -29,7 +29,9 @@ namespace HyperBloom
         public void Init(IPALogger logger)
         {
             Logger.logger = logger;
+            Logger.Log("Logger initialized");
             config = new BS_Utils.Utilities.Config(configName);
+            Logger.Log("Config initialized");
         }
 
         public void OnApplicationStart() => LoadSettings();
@@ -85,6 +87,7 @@ namespace HyperBloom
 
         internal static void LoadSettings()
         {
+            Logger.Log("Loading settings from config");
             postProcessEnabled = config.GetBool(sectionName, "Post Process Enabled", true, true);
             baseColorBoost = config.GetFloat(sectionName, "Base Color Boost", 0.5f, true);
             baseColorBoostThreshold = config.GetFloat(sectionName, "Base Color Boost Threshold", 0.1f, true);
