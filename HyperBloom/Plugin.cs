@@ -26,6 +26,11 @@ namespace HyperBloom
         internal static float initialBloomIntensity = 1;
         internal static float bloomStep = 1;
 
+        // Flashbang Settings
+        internal static bool flashbangEnabled = true;
+        internal static float flashbangIntensity = 20000;
+        internal static float flashbangTimeToReturn = 0.75f;
+
         public void Init(IPALogger logger)
         {
             Logger.logger = logger;
